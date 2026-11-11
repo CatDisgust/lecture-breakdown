@@ -23,9 +23,11 @@ A skill for Claude and Codex that breaks a lecture deck into ranked, dependency-
 
 ## 安装
 
-**Claude（网页版 / 桌面版）**
+这个 skill 只包含指令文件，不需要额外的 API 密钥或服务。同一个平台只装一份。
 
-1. 下载本仓库里的 [`lecture-breakdown.zip`](lecture-breakdown.zip)。
+**claude.ai（网页版 / 桌面版）**
+
+1. 下载本仓库里的 [`lecture-breakdown.zip`](lecture-breakdown.zip)，不用解压。
 2. 在 Claude 里打开 **Customize > Skills**，点 **+**，选 **Create skill > Upload a skill**，上传这个 zip。
 3. 在列表里把它打开。
 
@@ -33,21 +35,22 @@ A skill for Claude and Codex that breaks a lecture deck into ranked, dependency-
 
 **Claude Code**
 
-在 Claude 账号里启用这个 skill 后，用同一个账号登录 Claude Code，它会自动同步过去。
+把 `lecture-breakdown` 文件夹放进 `~/.claude/skills/`，确认指令文件位于 `~/.claude/skills/lecture-breakdown/SKILL.md`。如果已经在 claude.ai 账号里启用了这个 skill，用同一个账号登录 Claude Code 也会自动同步过去，不用再装一次。
 
 **Codex**
 
-在 Codex 里输入：
+把下面这段话发给 Codex：
 
+```text
+请使用 $skill-installer 安装 lecture-breakdown：
+https://github.com/CatDisgust/lecture-breakdown/tree/main/lecture-breakdown
 ```
-$skill-installer install https://github.com/CatDisgust/lecture-breakdown/tree/main/lecture-breakdown
-```
 
-也可以手动安装：把 `lecture-breakdown/` 文件夹复制到 `~/.codex/skills/` 下面。
-
-装好后重启 Codex。如果之前装过旧版本，先删掉 `~/.codex/skills/lecture-breakdown/` 再装。
+也可以手动安装：把 `lecture-breakdown` 文件夹放进 `~/.agents/skills/`，确认指令文件位于 `~/.agents/skills/lecture-breakdown/SKILL.md`。装好后如果 Codex 没识别到，重新打开 Codex 再试。
 
 在 Codex 里，课件文件要放在当前工作目录下，用的时候告诉它文件名就行。
+
+`~` 代表你的用户主目录。
 
 ## 用法
 
@@ -56,6 +59,8 @@ $skill-installer install https://github.com/CatDisgust/lecture-breakdown/tree/ma
 > 用 lecture-breakdown 拆一下这讲，考试是闭卷
 
 最好告诉它考试是闭卷、开卷还是限制开卷，收尾时给你的清单会不一样。不说的话它会先问你。
+
+想明确指定用这个 skill，在 Codex 里写 `$lecture-breakdown`，在 Claude Code 里写 `/lecture-breakdown`。
 
 常用指令：
 - 「从第 3 个点开始」：跳到指定的知识点
@@ -66,3 +71,7 @@ $skill-installer install https://github.com/CatDisgust/lecture-breakdown/tree/ma
 
 - 讲解只以课件为准。课件外补充的内容会单独标出来。
 - 如果环境里装了 [Aha](https://github.com/CatDisgust/aha-skill)，遇到卡点时会调用它。
+
+## 许可证
+
+[MIT License](LICENSE) © 2026 CatDisgust

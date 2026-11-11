@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lecture Breakdown"
+  short_description: "上传课件，拆成按重要度排序的知识点，逐个讲透并自测"
